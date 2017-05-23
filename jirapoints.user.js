@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       Alexey Seliverstov
-// @match        https://*.atlassian.*/secure/RapidBoard.jspa*
+// @match        https://7graus.atlassian.net/secure/RapidBoard.jspa*
 // @grant        none
 // @require     https://code.jquery.com/jquery-1.12.4.js
 // @require     https://code.jquery.com/ui/1.12.1/jquery-ui.js
