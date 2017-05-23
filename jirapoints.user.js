@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Jira pontos
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/seliver/
 // @version      0.1
 // @description  try to take over the world!
-// @author       You
+// @author       Alexey Seliverstov
 // @match        https://*.atlassian.*/secure/RapidBoard.jspa*
 // @grant        none
 // @require     https://code.jquery.com/jquery-1.12.4.js
