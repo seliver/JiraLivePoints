@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira pontos
 // @namespace    https://github.com/seliver/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       Alexey Seliverstov
 // @match        https://7graus.atlassian.net/secure/RapidBoard.jspa*
@@ -14,7 +14,6 @@
 (function() {
     'use strict';
 
-    
     function getVisibleIssues(issues, sprint) {
         var visible = [];
         issues.forEach(function(issue){
@@ -61,7 +60,8 @@
     }
     var node = document.createElement("div");
     node.id = 'points';
-    node.style = "position: absolute;width: 400px;height: 400px;z-index: 1000;bottom: 100px;left: 100px;background-color: white;";
+    node.classList = "ui-widget-content";
+    node.style = "position: absolute;width: 285px;height: 220px;z-index: 1000;bottom: 100px;left: 100px;background-color: white;resize: both;";
     var textnode = document.createTextNode("Loading...");
     node.appendChild(textnode);
     var html = document.querySelector('html');
@@ -69,6 +69,7 @@
     setInterval(getResults, 3000);
     
     $( "#points" ).draggable();
+    $( "#points" ).resizable();
     function processResult(request){
         var resp = JSON.parse(request.responseText);
         var visibleIssues = getVisibleIssues(resp.issues, resp.sprints[0]);
