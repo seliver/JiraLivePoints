@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Jira pontos
-// @namespace    https://github.com/seliver/
-// @version      0.2
-// @description  try to take over the world!
-// @author       Alexey Seliverstov
-// @match        https://7graus.atlassian.net/secure/RapidBoard.jspa*
-// @grant        none
+// @name        Jira Live Points
+// @namespace   https://github.com/seliver/
+// @version     0.3
+// @description  Jira Live Points - See your team points being updated without refreshing the page.
+// @author      Alexey Seliverstov
+// @match       https://*.atlassian.net/secure/RapidBoard.jspa*
+// @match       https://*.atlassian.com/secure/RapidBoard.jspa*
+// @grant       none
 // @require     https://code.jquery.com/jquery-1.12.4.js
 // @require     https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // @require     http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js
