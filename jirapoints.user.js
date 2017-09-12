@@ -42,7 +42,8 @@
     }
 
     function getResults(){
-        var url = 'https://7graus.atlassian.net/rest/greenhopper/1.0/xboard/plan/backlog/data.json?rapidViewId=20';
+        var origin = window.location.origin;
+        var url = origin+'/rest/greenhopper/1.0/xboard/plan/backlog/data.json?rapidViewId=20';
         var request = new XMLHttpRequest();
 
         request.open('GET', url, true);
