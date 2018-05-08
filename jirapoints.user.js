@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Jira Live Points
 // @namespace   https://github.com/seliver/
-// @version     0.3
+// @version     0.4
 // @description  Jira Live Points - See your team points being updated without refreshing the page.
 // @author      Alexey Seliverstov
 // @match       https://*.atlassian.net/secure/RapidBoard.jspa*
@@ -30,12 +30,14 @@
             assignee: assignee,
             assigneeName: assigneeName,
             totalEstimate: 0,
+            totalEstimateWithoutQa: 0,
             one: 0,
             two: 0,
             three: 0,
             five: 0,
             eight: 0,
             thirteen: 0,
+            qa: 0,
             totalTrackingEstimate: 0,
             issues: []
         };
@@ -63,7 +65,7 @@
     var node = document.createElement("div");
     node.id = 'points';
     node.classList = "ui-widget-content";
-    node.style = "position: absolute;width: 285px;height: 220px;z-index: 1000;bottom: 100px;left: 100px;background-color: white;resize: both;";
+    node.style = "position: absolute;width: 1285px;height: 1220px;z-index: 1000;top: 100px;left: 100px;background-color: white;resize: both;font-size:35px;";
     var textnode = document.createTextNode("Loading...");
     node.appendChild(textnode);
     var html = document.querySelector('html');
@@ -103,6 +105,12 @@
                 }else if (estimate == 13){
                     memo.users[assignee].thirteen++;
                 }
+                console.log(issue);
+                if (issue.status.id == "10200") {
+                    memo.users[assignee].qa += estimate;
+                }else{
+                    memo.users[assignee].totalEstimateWithoutQa += estimate;
+                }
                 memo.users[assignee].totalEstimate += estimate;
                 memo.totalEstimate += estimate;
             }
@@ -115,7 +123,7 @@
             return b.totalEstimate - a.totalEstimate || a.assigneeName.localeCompare(b.assigneeName);
         });
 
-        var html = "<table border=1 class='table table-striped'><tr><th>Nome</th><th>1</th><th>2</th><th>3</th><th>5</th><th>8</th><th>13</th><th>Total</th></tr>";
+        var html = "<table border=1 class='table table-striped'><tr><th>Nome</th><th>1</th><th>2</th><th>3</th><th>5</th><th>8</th><th>13</th><th>QA</th><th>Total</th><th>Total Sem QA</th></tr>";
         for (let user of sortedAssignedWork) {
             if (typeof user.assigneeName !== "undefined"){
                 html += "<tr>";
@@ -126,7 +134,9 @@
                 html += "<td>"+user.five+"</td>";
                 html += "<td>"+user.eight+"</td>";
                 html += "<td>"+user.thirteen+"</td>";
+                html += "<td>"+user.qa+"</td>";
                 html += "<td>"+user.totalEstimate+"</td>";
+                html += "<td>"+user.totalEstimateWithoutQa+"</td>";
                 html += "</tr>";
             }
         }
