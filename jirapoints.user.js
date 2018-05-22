@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Jira Live Points
 // @namespace   https://github.com/seliver/
-// @version     0.4
+// @version     0.5
 // @description  Jira Live Points - See your team points being updated without refreshing the page.
 // @author      Alexey Seliverstov
 // @match       https://*.atlassian.net/secure/RapidBoard.jspa*
@@ -106,7 +106,7 @@
                     memo.users[assignee].thirteen++;
                 }
                 console.log(issue);
-                if (issue.status.id == "10200") {
+                if (issue.status.id == "10200" || issue.status.id == "10201") {
                     memo.users[assignee].qa += estimate;
                 }else{
                     memo.users[assignee].totalEstimateWithoutQa += estimate;
